@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   BRAND COLOURS: change these and the whole site follows.
+   Values are "R G B" (no commas) so Tailwind can add transparency.
+   ------------------------------------------------------------------ */
+:root {
+  /* Ascendia palette (taken from ascendiaprime.com) */
+  --bg: 2 6 23;            /* #020617 page background */
+  --surface: 11 17 29;     /* #0b111d cards */
+  --surface2: 17 24 39;    /* #111827 inputs, raised areas */
+  --line: 30 41 59;        /* #1e293b borders */
+  --ink: 226 232 240;      /* #e2e8f0 main text */
+  --muted: 148 163 184;    /* #94a3b8 secondary text */
+  --accent: 63 139 249;    /* #3f8bf9 brand blue: links, highlights */
+  --accent-fg: 255 255 255; /* text on top of the brand colour */
+  --danger: 248 113 113;   /* errors */
+
+  /* Brand gradient used on buttons and badges: blue to purple */
+  --brand-from: 63 139 249;  /* #3f8bf9 */
+  --brand-to: 171 87 243;    /* #ab57f3 */
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-bg text-ink antialiased;
+  background-image: radial-gradient(60rem 28rem at 85% -8%, rgb(var(--brand-to) / 0.14), transparent 70%),
+    radial-gradient(40rem 24rem at 0% 30%, rgb(var(--brand-from) / 0.08), transparent 70%);
+  background-repeat: no-repeat;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-accent-fg shadow-lg shadow-accent/20 hover:brightness-110;
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-transparent text-ink hover:bg-surface2;
+  }
+  .btn-lg {
+    @apply px-7 py-3.5 text-base;
+  }
+
+  .card {
+    @apply rounded-xl2 border border-line bg-surface;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-line bg-bg/60 px-4 py-3 text-sm text-ink placeholder:text-muted/70
+      focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full border border-line bg-surface2 px-2.5 py-0.5 text-xs font-medium text-muted;
+  }
+
+  /* Lesson / legal text */
+  .prose-lite h1 {
+    @apply mb-4 mt-2 text-2xl font-bold;
+  }
+  .prose-lite h2 {
+    @apply mb-3 mt-6 text-xl font-semibold;
+  }
+  .prose-lite h3 {
+    @apply mb-2 mt-5 text-lg font-semibold;
+  }
+  .prose-lite p {
+    @apply my-3 leading-7 text-ink/90;
+  }
+  .prose-lite ul {
+    @apply my-3 list-disc space-y-1 pl-6;
+  }
+  .prose-lite ol {
+    @apply my-3 list-decimal space-y-1 pl-6;
+  }
+  .prose-lite a {
+    @apply text-accent underline underline-offset-2;
+  }
+  .prose-lite code {
+    @apply rounded bg-surface2 px-1.5 py-0.5 text-[0.85em];
+  }
+  .prose-lite pre {
+    @apply my-4 overflow-x-auto rounded-xl border border-line bg-surface2 p-4 text-sm;
+  }
+  .prose-lite pre code {
+    @apply bg-transparent p-0;
+  }
+  .prose-lite blockquote {
+    @apply my-4 border-l-4 border-accent/60 pl-4 text-muted;
+  }
+}

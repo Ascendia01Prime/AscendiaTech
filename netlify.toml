@@ -1,0 +1,5 @@
+# Netlify detects Next.js automatically and runs the build below.
+# Do NOT put secret keys in this file: it is committed. Add them in
+# Netlify > Project configuration > Environment variables (see README, "Go live").
+[build]
+  command = "npm run build"
